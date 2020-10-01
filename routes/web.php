@@ -24,7 +24,7 @@ Route::get('XXX','AAAController@bbb');
 
 //課題４admin/profile/create にアクセスしたら ProfileController の add Action に、
 //admin/profile/edit にアクセスしたら ProfileController の edit Action に割り当てるように設定
-Route ::group(['prefix' => 'admin']. function(){
+Route::group(['prefix' => 'admin'], function(){
     Route::get('profile/create','Admin\ProfileController@add');
     Route::get('profile/edit','Admin\ProfileController@edit');
 });
