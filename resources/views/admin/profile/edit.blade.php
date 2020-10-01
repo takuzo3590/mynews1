@@ -8,6 +8,6 @@
         <title>MyNews</title>
     </head>
     <body>
-        <h1>Myニュース作成画面</h1>
+        <h1>新着ニュース</h1>
     </body>
 </html>
