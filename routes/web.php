@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin', 'middleware' =>'auth'], function() {
     Route::get('news/create','Admin\NewsController@add');
-    Route::post('news/create', 'admin\NewsController@create');
+    Route::post('news/create', 'Admin\NewsController@create');
 });
 
 //課題３【http:://XXXXXX.jp/XXXというアクセスがきた時にAAAControllerのbbbというActionに渡す設定】
@@ -25,9 +25,11 @@ Route::group(['prefix' => 'admin', 'middleware' =>'auth'], function() {
 
 //課題４admin/profile/create にアクセスしたら ProfileController の add Action に、
 //admin/profile/edit にアクセスしたら ProfileController の edit Action に割り当てるように設定
-Route::group(['prefix' => 'admin'], function(){
-    Route::get('profile/create','Admin\ProfileController@add')->middleware('auth');
-    Route::get('profile/edit','Admin\ProfileController@edit')->middleware('auth');
+Route::group(['prefix' => 'admin', 'middleware' =>'auth'], function(){
+    Route::get('profile/create','Admin\ProfileController@add');
+    Route::post('profile/create','Admin\ProfileController@create');
+    Route::get('profile/edit','Admin\ProfileController@edit');
+    Route::post('profile/edit','Admin\ProfileController@update');
 });
 
 Auth::routes();
