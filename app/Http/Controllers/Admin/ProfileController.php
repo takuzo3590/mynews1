@@ -19,6 +19,8 @@ class ProfileController extends Controller
         $this->validate($request, Profile::$rules);
         $profile = new Profile;
         $form = $request->all();
+        // デバッグ
+        \Debugbar::info($form);
         //  フォームから送られてきた_tokenを削除
          unset($form['_token']);
         //  フォームから送信されてきた imageを削除
