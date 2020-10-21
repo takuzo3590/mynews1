@@ -7,13 +7,18 @@ use App\Http\Controllers\Controller;
 use App\Profile;
 use App\ProfileHistory;
 use Carbon\Carbon;
+use Auth;
 
 class ProfileController extends Controller
 {
     //
     public function add()
     {
+        if (Auth::user()->profile==NULL){
         return view('admin.profile.create');
+        } else {
+            return redirect('profile');
+        }
     }
     public function create(Request $request)
     {
@@ -27,19 +32,20 @@ class ProfileController extends Controller
          unset($form['image']);
         //  データベースに保存
          $profile->fill($form);
+         $profile->user_id = Auth::id();
          $profile->save();
          
         return redirect('admin/profile/create');
     }
     public function index(Request $request)
     {
-        $cond_title = $request->cond_title;
-        if ($cond_title !='') {
-            $posts = Profile::where('title', $cond_title)->get();
+        $cond_name = $request->cond_name;
+        if ($cond_name !='') {
+            $posts = Profile::where('name', $cond_name)->get();
         } else {
             $posts = Profile::all();
         }
-        return view('admin.profile.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+        return view('admin.profile.index', ['posts' => $posts, 'cond_name' => $cond_name]);
     }
     public function edit(Request $request)
     {
@@ -68,7 +74,7 @@ class ProfileController extends Controller
         $profile_history->edited_at = Carbon::now();
         $profile_history->save();
         
-        return redirect('admin/profile/');
+        return redirect('admin/profile');
     }
     public function delete(Request $request)
     {

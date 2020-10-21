@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Profile extends Model
 {
@@ -18,5 +19,9 @@ class Profile extends Model
     public function profile_history()
     {
         return $this->hasMany('App\ProfileHistory');
+    }
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }

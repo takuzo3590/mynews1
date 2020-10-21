@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\HTML;
+
 use App\Profile;
 
 class ProfileController extends Controller
@@ -18,4 +20,5 @@ class ProfileController extends Controller
         }
         return view('profile.index' , ['headline' => $headline, 'posts' => $posts]);
     }
+   
 }
