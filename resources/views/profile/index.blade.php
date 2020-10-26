@@ -2,6 +2,10 @@
 
 @section('content')
 <div class="container">
+    <div class="row">
+        <h2>My Profile</h2>
+        <p>about me</p>
+    </div>
     <hr color="c0c0c0">
     @if (!is_null($headline))
     <div class ="row">
